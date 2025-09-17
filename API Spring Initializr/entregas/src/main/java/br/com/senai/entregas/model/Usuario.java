@@ -18,15 +18,24 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuario_id",  nullable = false, columnDefinition = "TEXT")
+    @Column(name = "usuario_id",  nullable = false)
     private Integer usuarioId;
 
-    @Column(name = "nome_completo", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "nome_completo", nullable = false)
     private String nomeCompleto;
 
-    @Column(name = "email",  nullable = false, unique = true, columnDefinition = "TEXT")
+    @Column(name = "email",  nullable = false, unique = true)
     private String email;
 
-    @Column(name = "senha",  nullable = false, columnDefinition = "TEXT")
+    @Column(name = "senha",  nullable = false)
     private String senha;
+
+    //MUITOS USUARIOS PARA UM TIPO USUARIO
+    //FETCHTYPE.EAGER - CARREGA OS DADOS JUNTOS
+    // OPTIONAL - SE EH OBRIGATORIO OU NAO
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    // avisar o java qual coluna do tipo usuario que vou relacionar
+    @JoinColumn(name = "tipo_usuario_id")
+    private TipoUsuario tipoUsuario;
+
 }
