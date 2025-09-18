@@ -48,13 +48,14 @@ public class TipoUsuarioService {
 
     //atualizar
     public TipoUsuario atualizarTipoUsuario(Integer id, TipoUsuario usuarioNovo) {
-        //procurar quem eu quero atualizar
+        //1. procurar quem eu quero atualizar
         TipoUsuario usuarioAntigo = buscarPorId(id);
-        // se eu nao achar retorno nulo
+        //2. se eu nao achar retorno nulo
         if (usuarioAntigo == null) {
             return null;
         }
-        //se eu achar o usuario eu atualizo
+        //3. se eu achar o usuario eu atualizo
+        usuarioAntigo.setDescricao(usuarioNovo.getDescricao());
         return tipoUsuarioRepository.save(usuarioAntigo);
     }
 
